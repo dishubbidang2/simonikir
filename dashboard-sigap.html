@@ -246,7 +246,7 @@ tbody td{padding:8px 10px;font-size:.75rem;color:var(--text2);}
   <div class="tabs">
     <button class="tab active" onclick="switchTab('ringkasan',this)">📊 Ringkasan</button>
     <button class="tab" onclick="switchTab('laporan',this)">📋 Laporan Harian</button>
-    <button class="tab" onclick="switchTab('titik',this)">📍 Titik & Jadwal</button>
+    <button class="tab" onclick="switchTab('titik',this)"></button>
     <button class="tab" onclick="switchTab('rekap',this)">📅 Rekap Bulanan</button>
   </div>
 
@@ -480,7 +480,7 @@ function loadDemo() {
 }
 
 // ── RENDER ALL ─────────────────────────────────────────────────────────────
-function renderAll() { renderStats(); renderProgress(); renderDonut(); renderBarChart(); renderSidebar(); renderTable(); renderTitik(); renderRekap(); }
+function renderAll() { renderStats(); renderProgress(); renderDonut(); renderBarChart(); renderSidebar(); renderTable(); renderTitik( /*removed*/); renderRekap(); }
 
 function todayData() { return allData.filter(d => d.tanggal_pengawasan === selectedDate); }
 
@@ -563,7 +563,7 @@ function renderTable() {
 }
 function setFilter(f,el){activeFilter=f;document.querySelectorAll('.pills .pill').forEach(p=>p.classList.remove('active'));el.classList.add('active');renderTable();}
 
-function renderTitik() {
+function renderTitik( /*removed*/) {
   // Titik list
   document.getElementById('titikList').innerHTML=!allTitik.length?'<div class="empty"><div class="empty-icon">📍</div>Belum ada data</div>':allTitik.map((t,i)=>`<div class="titik-item"><div class="titik-num">${t.no||i+1}</div><div class="titik-info"><div class="titik-name">${t.nama_titik_pengawasan||'-'}</div><div class="titik-sub">${t.kecamatan||''} · ${t.trayek_yang_melintas||''}</div><div class="titik-sub" style="margin-top:2px">👮 ${t.petugas_pic||'-'}</div></div><div class="titik-badge">${t.jadwal_pengawasan||'-'}</div></div>`).join('');
 
